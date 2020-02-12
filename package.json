@@ -5,10 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "netlify-lambda-serve": "netlify-lambda serve netlify-lambda-src",
+    "netlify-lambda-build": "netlify-lambda build netlify-lambda-src"
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "github-api": "^3.3.0",
     "postcss-nested": "^4.2.1",
     "postcss-percentage": "0.0.0",
     "rfs": "^9.0.2",
@@ -20,8 +23,10 @@
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
     "babel-eslint": "^10.0.3",
+    "dotenv": "^8.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "netlify-lambda": "^1.6.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
