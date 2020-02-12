@@ -3,20 +3,17 @@
     <h1>Create a travelgram</h1>
     <form @submit.prevent class="styled">
       <VInput v-model="travelgramId" label="Your travelgram ID:" />
-      <VFile v-model="files" label="Select a file" multiple>
+      <VFile v-model="files" label="Select a file" multiple accept="image/*">
         <template #default="{ files, droppable }">
           <p v-if="droppable" aria-hidden="true">Go ahead, let go.</p>
           <p v-else-if="files.length" aria-hidden="true">
-            {{ files.map(file => file.name) }}
+            You have selected {{files.length}} photos.
           </p>
           <p v-else aria-hidden="true">Drop some photos of your trip here.</p>
         </template>
       </VFile>
-      <p v-if="files.length">
-        You have selected {{files.length}} photos.
-      </p>
     </form>
-    <div class="image-container">
+    <div class="image-container" v-if="files.length">
       <ImageFromFile :file="file" v-for="(file, idx) in files" :key="idx" />
     </div>
   </div>
@@ -93,16 +90,16 @@ form.styled {
   width: 100%;
   padding: 0.8rem 1rem;
   margin-bottom: rfs(2rem);
+  font-size: 1rem;
 }
 
 .vts-file__dropzone {
   display: flex;
   justify-content: center;
-  border: 3px dashed #fc6d4b;
+  border: 2px dashed #ccc;
   border-radius: 5px;
   padding: 30px;
-    background: url(http://travelgram.co/cdn.travelgram.co/medias/background/background-carreaux.jpg);
-
+  background: url(http://travelgram.co/cdn.travelgram.co/medias/background/background-carreaux.jpg) center center;
   transition: background-color 0.2s ease;
 }
 
@@ -111,16 +108,15 @@ form.styled {
 }
 
 .vts-file--selected .vts-file__dropzone {
-  border-style: solid;
+  border-style: 2px solid #fc6d4b;
 }
 .image-container {
   position: absolute;
-  z-index: -1;
   right: 0;
   bottom: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
   padding: 1rem 0;
   border-top: solid 1px #ccc;
   img {
